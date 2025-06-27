@@ -8,12 +8,15 @@ class Barpicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsetsGeometry.only(left: 12,bottom: 3),
-        width: 15,
-        height: 10,
+        margin: EdgeInsetsGeometry.only(left: 12,bottom: 10,top: 1),
+      width: 50, // You can adjust the size
+      height: 50,
       decoration: BoxDecoration(
-          color: Colors.blue,
-          shape: BoxShape.circle
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: AssetImage('assets/images/profilr.avif'),
+          fit: BoxFit.cover,
+        ),
       ),
       );
 

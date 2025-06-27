@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:full_app/Screen_Widgets/HomeScreen/Home.dart';
 import 'package:full_app/Screen_Widgets/Navigation_Pages/NavigationPages.dart';
 import 'package:full_app/constant/App_Theme.dart';
-import 'package:full_app/constant/Colors.dart';
 import 'package:get/get.dart';
+
+import 'constant/Dimensions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme:AppTheme.lightTheme,
-      home: NavigationPages(),
+      home:Builder(
+        builder: (context) {
+          DimensionsApp.init(context); // ✅ init here once
+          return NavigationPages(); // your main screen
+        },
+      ),
     );
   }
 }
-
+// NavigationPages(),
 

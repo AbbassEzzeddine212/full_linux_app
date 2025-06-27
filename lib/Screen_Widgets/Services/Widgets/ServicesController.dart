@@ -1,23 +1,21 @@
 import 'package:get/get.dart';
 
 
-class IssuesController extends GetxController{
+class ServicesController extends GetxController{
   var isOngoing = true.obs;
 
   final ongoingIssues = List.generate(
-    20,
+    2,
         (index) => {
-      'id': '00123$index',
-      'type': 'Issue $index',
+      'type': 'CarWash',
       'status': index % 2 == 0 ? 'Pending' : 'Approved',
     },
   ).obs;
 
   final completedIssues = List.generate(
-    10,
+    5,
         (index) => {
-      'id': '00200$index',
-      'type': 'Completed Issue $index',
+      'type': 'Cleaning',
       'status': 'Completed',
     },
   ).obs;

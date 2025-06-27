@@ -4,6 +4,8 @@ import 'package:full_app/Screen_Widgets/Navigation_Pages/controller.dart';
 import 'package:full_app/constant/Colors.dart';
 import 'package:get/get.dart';
 
+import '../PROFILE_SCREEN/PROFILE_Page.dart';
+
 class NavigationPages extends StatelessWidget {
   final NavigationController navcontroller = Get.put(NavigationController());
 
@@ -11,8 +13,10 @@ class NavigationPages extends StatelessWidget {
     Home(),
     SafeArea(child: Center(child: Text("🔄 2"))),
     SafeArea(child: Center(child: Text("👥 2"))),
-    SafeArea(child: Center(child: Text("👥 Profile"))),
+    ProfilePage()
   ];
+
+   NavigationPages({super.key});
 
   @override
   Widget build(BuildContext context) {

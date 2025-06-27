@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:full_app/Screen_Widgets/NewRequestPage/NewRequest_Page.dart';
+import 'package:full_app/Screen_Widgets/Services/Widgets/ServicesList.dart';
 import 'package:full_app/constant/MyAppBar.dart';
 import 'package:get/get.dart';
-
 import '../../constant/Dimensions.dart';
-import 'WIdgets/IssuesCatigories.dart';
-import 'WIdgets/SwitchLists.dart';
+import 'NewRequestPage.dart';
+import 'Widgets/ServicesCatigories.dart';
 
-class Requests extends StatelessWidget {
-  Requests({super.key});
 
-  final List<IssueCategory> categories = [
-    IssueCategory(
-      'Electrical Issue',
-      Icons.flash_on,
-      () => Get.to(() => NewrequestPage(issueType: 'Electrical Issue')),
+class ServicesPage extends StatelessWidget {
+   ServicesPage({super.key});
+  final List<ServiceCategory> categories = [
+    ServiceCategory(
+      'HouseKeeping',
+          () => Get.to(() => NewRquestInvoice(Title: 'HouseKeeping',)),
     ),
-    IssueCategory(
-      'IT Issues',
-      Icons.wifi,
-          () => Get.to(() => NewrequestPage(issueType: 'IT Issues')),
+    ServiceCategory(
+      'Cleaning',
+
+          () => Get.to(() => NewRquestInvoice(Title: 'Cleaning',)),
     ),
-    IssueCategory(
-      'Mechanical Issue',
-      Icons.build,
-          () => Get.to(() => NewrequestPage(issueType: 'Mechanical Issue')),
-    ),IssueCategory(
-      'General issues',
-      Icons.description,
-          () => Get.to(() => NewrequestPage(issueType: 'General issues')),
+    ServiceCategory(
+      'Packing',
+
+          () => Get.to(() => NewRquestInvoice(Title: 'Packing',)),
+    ),ServiceCategory(
+      'Carwash',
+
+          () => Get.to(() => NewRquestInvoice(Title: 'Carwash',)),
     ),
 
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: 'Requests'),
+      appBar: MyAppBar(title: 'service'),
       body: SafeArea(
         child: Column(
           children: [
             Center(
               child: Text(
-                'Report New issue',
+                'Request a service',
                 style: TextStyle(
                   fontSize: 23,
                   color: Colors.black,
@@ -53,8 +50,8 @@ class Requests extends StatelessWidget {
 
             Padding(
               padding:  EdgeInsets.symmetric(
-                horizontal: DimensionsApp.width * 0.05,
-                vertical: DimensionsApp.height * 0.03,
+                horizontal: DimensionsApp.width*0.03,
+                vertical: DimensionsApp.height*0.02,
               ),
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -72,13 +69,13 @@ class Requests extends StatelessWidget {
                   // Slightly wider, flatter look
                   physics: NeverScrollableScrollPhysics(),
                   children: categories
-                      .map((category) => IssueCard(category: category))
+                      .map((category) => ServicesCard(category: category))
                       .toList(),
                 ),
               ),
             ),
 
-            Expanded(child: Switchlists()),
+            Expanded(child: ServicesLIst()),
           ],
         ),
       ),

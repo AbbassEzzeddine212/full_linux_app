@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class IssueCategory {
+class ServiceCategory {
   final String title;
-  final IconData icon;
   final void Function()? onTap;
 
-  IssueCategory(this.title, this.icon, this.onTap);
+  ServiceCategory(this.title, this.onTap);
 }
 
-class IssueCard extends StatelessWidget {
-  final IssueCategory category;
+class ServicesCard extends StatelessWidget {
+  final ServiceCategory category;
 
-  const IssueCard({super.key, required this.category});
+  const ServicesCard({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,6 @@ class IssueCard extends StatelessWidget {
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(category.icon, size: 23, color: Colors.black87), // Smaller icon
             const SizedBox(height: 6),
             Text(
               category.title,
