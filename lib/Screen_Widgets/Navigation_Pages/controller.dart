@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../HomeScreen/Home.dart';
+
+import '../CHAT/ChatPage.dart';
+import '../HOME/HomeScreen/Home.dart';
 import '../PROFILE_SCREEN/PROFILE_Page.dart';
 
 class NavigationController extends GetxController {
@@ -23,7 +25,7 @@ class NavigationController extends GetxController {
         page = Center(child: Text("Tab 2"));
         break;
       case 2:
-        page = Center(child: Text("Tab 3"));
+        page = ChatPage();
         break;
       case 3:
         page = ProfilePage();
