@@ -1,55 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:full_app/Screen_Widgets/Booking/widgets/Model.dart';
-import 'package:full_app/constant/MyAppBar.dart';
+import 'package:get/get.dart';
+import 'package:full_app/Screen_Widgets/Booking/widgets/BookingController.dart';
 
 class Mybooking extends StatelessWidget {
-  final BookingItem item;
-  final String status;
-  final String dateAndTime;
+  final controller = Get.find<BookingController>();
 
-  const Mybooking({
-    super.key,
-    required this.item,
-    required this.status,
-    required this.dateAndTime,
-  });
+   Mybooking({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: 'My Booking'),
-      body: SafeArea(
-        child: Padding(
+      appBar: AppBar(title: const Text('My Booking')),
+      body: Obx(() {
+        if (controller.bookedItems.isEmpty) {
+          return const Center(child: Text("No bookings yet."));
+        }
+        return ListView.builder(
           padding: const EdgeInsets.all(16),
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Image.asset(item.imagePath, height: 180, fit: BoxFit.cover),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Number      ${item.number}"),
-                      const SizedBox(height: 4),
-                      Text("Location    ${item.location}"),
-                      const SizedBox(height: 4),
-                      Text("Status      $status"),
-                      const SizedBox(height: 4),
-                      Text("Date And Time: $dateAndTime"),
-                    ],
+          itemCount: controller.bookedItems.length,
+          itemBuilder: (context, index) {
+            final booked = controller.bookedItems[index];
+            return Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              margin: const EdgeInsets.only(bottom: 16),
+              elevation: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ClipRRect(
+                    borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
+                    child: Image.asset(
+                      booked.imagePath,
+                      height: 180,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Number: ${booked.number}"),
+                        Text("Location: ${booked.location}"),
+                        Text("Status: ${booked.status ?? 'N/A'}"),
+                        Text("Date And Time: ${booked.dateAndTime ?? 'N/A'}"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }

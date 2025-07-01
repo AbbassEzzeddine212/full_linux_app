@@ -3,6 +3,7 @@ import 'package:full_app/constant/Dimensions.dart';
 import 'package:get/get.dart';
 import 'package:full_app/constant/MyAppBar.dart';
 
+import '../Navigation_Pages/controller.dart'; // ✅ For navigation
 import 'SecoundNewsPage.dart';
 
 class NewsPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _NewsPageState extends State<NewsPage> {
   final List<Map<String, dynamic>> articles = [
     {
       'title':
-          'The Future of AI: How Artificial Intelligence Will Change the World',
+      'The Future of AI: How Artificial Intelligence Will Change the World',
       'image': 'assets/images/Ai.jpeg',
       'content': '''
 Innovations in the field of artificial intelligence continue to shape the future of humanity across nearly every industry.
@@ -49,13 +50,21 @@ Include compound lifts, rest days, and proper nutrition to optimize your fitness
 
   @override
   Widget build(BuildContext context) {
+    final navController = Get.find<NavigationController>(); // ✅
+
     return Scaffold(
-      appBar: MyAppBar(title: 'News'),
+      appBar: MyAppBar(
+        title: 'News',
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => navController.goBack(), // ✅ Go back using controller
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           spacing: 10,
           children: [
-            const SizedBox(height: 12),
+
 
             /// 🔄 PageView Slider
             SizedBox(
@@ -104,15 +113,15 @@ Include compound lifts, rest days, and proper nutrition to optimize your fitness
             /// News List
             Padding(
               padding: EdgeInsets.symmetric(
-                vertical: DimensionsApp.height*0.05
+                vertical: DimensionsApp.height * 0.05,
+                horizontal: DimensionsApp.width * 0.04,
               ),
               child: Column(
-                spacing: 15,
                 children: articles.map((article) {
                   return GestureDetector(
                     onTap: () {
                       Get.to(
-                        () => Secoundnewspage(
+                            () => Secoundnewspage(
                           title: article['title'],
                           image: article['image'],
                           content: article['content'],
@@ -136,10 +145,7 @@ Include compound lifts, rest days, and proper nutrition to optimize your fitness
                           Expanded(
                             child: Text(
                               article['title'],
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
-                              ),
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
                         ],

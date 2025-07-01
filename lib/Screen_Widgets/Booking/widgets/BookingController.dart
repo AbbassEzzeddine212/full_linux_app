@@ -1,9 +1,5 @@
 import 'package:get/get.dart';
-
 import 'Model.dart';
-
-
-
 
 class BookingController extends GetxController {
   var selectedCategory = 'Courts'.obs;
@@ -34,6 +30,27 @@ class BookingController extends GetxController {
       location: 'Building 3',
     ),
   ].obs;
+
+  final bookedItems = <BookingItem>[].obs;
+  var selectedDate = ''.obs;
+  var selectedTime = ''.obs;
+
+  void bookItem(BookingItem item) {
+    final booked = BookingItem(
+      category: item.category,
+      imagePath: item.imagePath,
+      number: item.number,
+      location: item.location,
+      status: 'Approved',
+      dateAndTime: '${selectedDate.value}, ${selectedTime.value}',
+    );
+    bookedItems.add(booked);
+  }
+
+  void clearSelection() {
+    selectedDate.value = '';
+    selectedTime.value = '';
+  }
 
   List<BookingItem> get filteredItems => allItems
       .where((item) => item.category == selectedCategory.value)

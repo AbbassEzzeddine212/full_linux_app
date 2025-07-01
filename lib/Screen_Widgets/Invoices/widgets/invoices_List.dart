@@ -45,11 +45,7 @@ class InvoicesList extends StatelessWidget {
                         ),
                         child: Text(
                           "Due",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+                         style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ),
@@ -69,11 +65,7 @@ class InvoicesList extends StatelessWidget {
                         ),
                         child: Text(
                           "Archived",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                     ),
@@ -88,32 +80,42 @@ class InvoicesList extends StatelessWidget {
                     : controller.Archived;
                 return ListView.builder(
                   itemCount: invoices.length,
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: DimensionsApp.width*0.02,
+                    vertical: DimensionsApp.height*0.03
+                  ),
                   itemBuilder: (context, index) {
                     final invoice = invoices[index];
                     return InkWell(
                       onTap: () =>Get.to(InvoicesCardpage(title: '${invoice['id']}',)),
                       child: Card(
-                        elevation: 101,
+                        elevation: 7,
                         color: AppColors.Appbar,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
 
-                        margin: EdgeInsets.only(bottom: 10),
-                        child: Column(
-                          children: [
-                            Text('${invoice['id']}',style: TextStyle(fontSize: 15),),
+                        margin: EdgeInsets.only(bottom: 30),
+                        child: Padding(
+                          padding:  EdgeInsets.symmetric(
+                            horizontal: DimensionsApp.width*0.03,
+                            vertical: DimensionsApp.height*0.02
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${invoice['id']}',  style: Theme.of(context).textTheme.bodyMedium,),
 
-                            Divider(
-                              indent: 20,
-                              endIndent: 20,
-                              color: Colors.black,
-                            ),
+                              Divider(
+                                indent: 00,
+                                endIndent: 100,
+                                color: Colors.black,
+                              ),
 
-                            Text('Status:   ${invoice['status']}',style: TextStyle(fontSize: 15),),
-                            Text('Amount:  ${invoice['Amount']}',style: TextStyle(fontSize: 15),),
-                          ],
+                              Text('Status:   ${invoice['status']}',  style: Theme.of(context).textTheme.bodyMedium,),
+                              Text('Amount:  ${invoice['Amount']}',  style: Theme.of(context).textTheme.bodyMedium,),
+                            ],
+                          ),
                         ),
                         // child: ListTile(
                         //   title: Text('${issue['id']} - ${issue['type']}'),

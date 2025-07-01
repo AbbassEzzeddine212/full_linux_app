@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:full_app/constant/Colors.dart';
 import 'package:full_app/constant/MyAppBar.dart';
+import 'package:get/get.dart';
 
 import '../../constant/Dimensions.dart';
 import '../Requests/WIdgets/NewRequestRow.dart';
+import 'Widgets/ServicesController.dart';
 
 class NewRquestInvoice extends StatelessWidget {
   const NewRquestInvoice({super.key, required this.Title});
@@ -12,6 +14,7 @@ class NewRquestInvoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ServicesController());
     return Scaffold(
       appBar: MyAppBar(title: 'New Request'),
       body: SafeArea(
@@ -30,17 +33,29 @@ class NewRquestInvoice extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('Image'),
-                    Flexible(
-                      child: Container(
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Center(child: Icon(Icons.add)),
-                      ),
+                    const Text('Image'),
+                    GestureDetector(
+                      onTap: controller.pickImage,
+                      child: Obx(() {
+                        final image = controller.images[0];
+                        return Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(15),
+                            image: image != null
+                                ? DecorationImage(
+                              image: FileImage(image),
+                              fit: BoxFit.cover,
+                            )
+                                : null,
+                          ),
+                          child: image == null
+                              ? const Icon(Icons.add, size: 30, color: Colors.black45)
+                              : null,
+                        );
+                      }),
                     ),
                   ],
                 ),

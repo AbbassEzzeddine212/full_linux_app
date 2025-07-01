@@ -21,7 +21,8 @@ class Secoundnewspage extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           padding:  EdgeInsets.symmetric(
-            vertical: DimensionsApp.height*0.01
+            vertical: DimensionsApp.height*0.01,
+                horizontal: DimensionsApp.width*0.03
           ),
           child: Column(
             spacing: 20,
@@ -51,7 +52,7 @@ class Secoundnewspage extends StatelessWidget {
               /// 📝 Content
               Text(
                 content,
-                style: const TextStyle(fontSize: 20, height: 1.5),
+                style: Theme.of(context).textTheme.bodyMedium
               ),
             ],
           ),

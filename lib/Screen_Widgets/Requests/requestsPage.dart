@@ -4,17 +4,20 @@ import 'package:full_app/constant/MyAppBar.dart';
 import 'package:get/get.dart';
 
 import '../../constant/Dimensions.dart';
+import '../Navigation_Pages/controller.dart'; // <-- Add this
 import 'WIdgets/IssuesCatigories.dart';
 import 'WIdgets/SwitchLists.dart';
 
 class Requests extends StatelessWidget {
   Requests({super.key});
 
+  final NavigationController navController = Get.find<NavigationController>(); // <-- Add this
+
   final List<IssueCategory> categories = [
     IssueCategory(
       'Electrical Issue',
       Icons.flash_on,
-      () => Get.to(() => NewrequestPage(issueType: 'Electrical Issue')),
+          () => Get.to(() => NewrequestPage(issueType: 'Electrical Issue')),
     ),
     IssueCategory(
       'IT Issues',
@@ -25,39 +28,43 @@ class Requests extends StatelessWidget {
       'Mechanical Issue',
       Icons.build,
           () => Get.to(() => NewrequestPage(issueType: 'Mechanical Issue')),
-    ),IssueCategory(
+    ),
+    IssueCategory(
       'General issues',
       Icons.description,
           () => Get.to(() => NewrequestPage(issueType: 'General issues')),
     ),
-
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: 'Requests'),
+      appBar: MyAppBar(
+        title: 'Requests',
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            navController.goBack(); // ⬅️ Go back in the navigation stack
+          },
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Center(
+              heightFactor: 2,
               child: Text(
                 'Report New issue',
-                style: TextStyle(
-                  fontSize: 23,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
-
             Padding(
-              padding:  EdgeInsets.symmetric(
-                horizontal: DimensionsApp.width * 0.05,
-                vertical: DimensionsApp.height * 0.03,
+              padding: EdgeInsets.symmetric(
+                horizontal: DimensionsApp.width * 0.04,
+                vertical: DimensionsApp.height * 0.02,
               ),
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -66,10 +73,9 @@ class Requests extends StatelessWidget {
                 child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 2.5,
-                  // Slightly wider, flatter look
+                  crossAxisSpacing: 25,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 2.7,
                   physics: NeverScrollableScrollPhysics(),
                   children: categories
                       .map((category) => IssueCard(category: category))
@@ -77,7 +83,6 @@ class Requests extends StatelessWidget {
                 ),
               ),
             ),
-
             Expanded(child: Switchlists()),
           ],
         ),

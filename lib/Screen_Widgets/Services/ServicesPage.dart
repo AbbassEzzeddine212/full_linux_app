@@ -3,55 +3,57 @@ import 'package:full_app/Screen_Widgets/Services/Widgets/ServicesList.dart';
 import 'package:full_app/constant/MyAppBar.dart';
 import 'package:get/get.dart';
 import '../../constant/Dimensions.dart';
+import '../Navigation_Pages/controller.dart'; // ✅ Import for back navigation
 import 'NewRequestPage.dart';
 import 'Widgets/ServicesCatigories.dart';
 
-
 class ServicesPage extends StatelessWidget {
-   ServicesPage({super.key});
+  ServicesPage({super.key});
+
   final List<ServiceCategory> categories = [
     ServiceCategory(
       'HouseKeeping',
-          () => Get.to(() => NewRquestInvoice(Title: 'HouseKeeping',)),
+          () => Get.to(() => NewRquestInvoice(Title: 'HouseKeeping')),
     ),
     ServiceCategory(
       'Cleaning',
-
-          () => Get.to(() => NewRquestInvoice(Title: 'Cleaning',)),
+          () => Get.to(() => NewRquestInvoice(Title: 'Cleaning')),
     ),
     ServiceCategory(
       'Packing',
-
-          () => Get.to(() => NewRquestInvoice(Title: 'Packing',)),
-    ),ServiceCategory(
-      'Carwash',
-
-          () => Get.to(() => NewRquestInvoice(Title: 'Carwash',)),
+          () => Get.to(() => NewRquestInvoice(Title: 'Packing')),
     ),
-
+    ServiceCategory(
+      'Carwash',
+          () => Get.to(() => NewRquestInvoice(Title: 'Carwash')),
+    ),
   ];
+
   @override
   Widget build(BuildContext context) {
+    final navController = Get.find<NavigationController>(); // ✅ Back control
+
     return Scaffold(
-      appBar: MyAppBar(title: 'service'),
+      appBar: MyAppBar(
+        title: 'Service',
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => navController.goBack(), // ✅ Use controller
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Center(
               child: Text(
                 'Request a service',
-                style: TextStyle(
-                  fontSize: 23,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
-
             Padding(
-              padding:  EdgeInsets.symmetric(
-                horizontal: DimensionsApp.width*0.03,
-                vertical: DimensionsApp.height*0.02,
+              padding: EdgeInsets.symmetric(
+                horizontal: DimensionsApp.width * 0.03,
+                vertical: DimensionsApp.height * 0.02,
               ),
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -63,10 +65,9 @@ class ServicesPage extends StatelessWidget {
                 child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 2.5,
-                  // Slightly wider, flatter look
+                  crossAxisSpacing: 25,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 2.7,
                   physics: NeverScrollableScrollPhysics(),
                   children: categories
                       .map((category) => ServicesCard(category: category))
@@ -74,7 +75,6 @@ class ServicesPage extends StatelessWidget {
                 ),
               ),
             ),
-
             Expanded(child: ServicesLIst()),
           ],
         ),

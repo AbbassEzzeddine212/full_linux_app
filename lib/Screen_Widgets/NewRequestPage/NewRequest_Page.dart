@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:full_app/Screen_Widgets/NewRequestPage/widgets/Controller.dart';
 import 'package:full_app/Screen_Widgets/NewRequestPage/widgets/PhotoContainer.dart';
 import 'package:full_app/constant/MyAppBar.dart';
+import 'package:get/get.dart';
 import '../../constant/Dimensions.dart';
 
 class NewrequestPage extends StatelessWidget {
@@ -10,6 +12,7 @@ class NewrequestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(NewRequestController());
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: MyAppBar(title: 'New Request'),
@@ -26,63 +29,52 @@ class NewrequestPage extends StatelessWidget {
               Center(
                 child: Text(
                   issueType,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineLarge
                 ),
               ),
 
               // Title
               Text(
                 'Title:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              TextFormField(),
 
               // Description
               Text(
                 'Description:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               TextFormField(
                 maxLines: 5,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
               ),
 
 
               // Upload Image
               Text(
                 'Upload Image:',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  UplpoadPhoto(),
-                  UplpoadPhoto(),
-                  UplpoadPhoto(),
+                children:  [
+                  UploadPhoto(index: 0,),
+                  UploadPhoto(index: 1,),
+                  UploadPhoto(index: 2,),
                 ],
               ),
-              SizedBox(height: 30),
+
 
               // Submit Button
               Center(
                 child: SizedBox(
                   width: 120,
-                  child: OutlinedButton(
+                  child: ElevatedButton(
                     onPressed: () {},
                     child: Text(
                       'Submit',
-                      style: TextStyle(color: Colors.black),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ),

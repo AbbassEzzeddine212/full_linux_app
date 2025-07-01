@@ -3,9 +3,12 @@ import 'package:full_app/Screen_Widgets/Navigation_Pages/NavigationPages.dart';
 import 'package:full_app/constant/App_Theme.dart';
 import 'package:get/get.dart';
 
+import 'Screen_Widgets/Navigation_Pages/controller.dart';
 import 'constant/Dimensions.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.put(NavigationController());
   runApp(const MyApp());
 }
 
@@ -27,5 +30,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-// NavigationPages(),
-

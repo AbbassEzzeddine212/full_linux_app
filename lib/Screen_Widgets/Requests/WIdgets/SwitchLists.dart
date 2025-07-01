@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_app/Screen_Widgets/Requests/WIdgets/SwitchLists_Controller.dart';
 import 'package:full_app/constant/Colors.dart';
+import 'package:full_app/constant/Dimensions.dart';
 import 'package:get/get.dart';
 
 class Switchlists extends StatelessWidget {
@@ -38,11 +39,7 @@ class Switchlists extends StatelessWidget {
                         ),
                         child: Text(
                           "Ongoing",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
                     ),
@@ -61,15 +58,11 @@ class Switchlists extends StatelessWidget {
                         ),
                         child: Text(
                           "Completed",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),
-                          )
-                  )
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -81,42 +74,50 @@ class Switchlists extends StatelessWidget {
                     : controller.completedIssues;
                 return ListView.builder(
                   itemCount: issues.length,
-                  padding: EdgeInsets.all(12),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: DimensionsApp.width * 0.02,
+                    vertical: DimensionsApp.height * 0.03,
+                  ),
                   itemBuilder: (context, index) {
                     final issue = issues[index];
                     return Card(
-                      elevation: 101,
+                      elevation: 5,
                       color: AppColors.Appbar,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
 
-                      margin: EdgeInsets.only(bottom: 10),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: DimensionsApp.width * 0.05,
+                          vertical: DimensionsApp.height * 0.02,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(Icons.build),
+                                Text('${issue['id']} - ${issue['type']}'),
+                              ],
+                            ),
+                            Divider(
+                              indent: 20,
+                              endIndent: 20,
+                              color: Colors.black,
+                            ),
 
-                            children: [
-                              Icon(Icons.build),
-                              Text('${issue['id']} - ${issue['type']}'),
-                            ],
-                          ),
-                          Divider(
-                            indent: 20,
-                            endIndent: 20,
-                            color: Colors.black,
-                          ),
-
-                          Text('Status:   ${issue['status']}'),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(Icons.edit_note_rounded),
-                              Icon(Icons.delete_outline),
-                            ],
-                          ),
-                        ],
+                            Text('Status:   ${issue['status']}'),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.edit_note_rounded),
+                                Icon(Icons.delete_outline),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       // child: ListTile(
                       //   title: Text('${issue['id']} - ${issue['type']}'),

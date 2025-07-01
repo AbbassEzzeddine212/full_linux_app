@@ -1,56 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:full_app/Screen_Widgets/HomeScreen/Home.dart';
+import 'package:get/get.dart';
 import 'package:full_app/Screen_Widgets/Navigation_Pages/controller.dart';
 import 'package:full_app/constant/Colors.dart';
-import 'package:get/get.dart';
-
-import '../PROFILE_SCREEN/PROFILE_Page.dart';
 
 class NavigationPages extends StatelessWidget {
-  final NavigationController navcontroller = Get.put(NavigationController());
+  final NavigationController navcontroller = Get.find<NavigationController>();
 
-  final List<Widget> pages = [
-    Home(),
-    SafeArea(child: Center(child: Text("🔄 2"))),
-    SafeArea(child: Center(child: Text("👥 2"))),
-    ProfilePage()
-  ];
-
-   NavigationPages({super.key});
+  NavigationPages({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        body: pages[navcontroller.selectedindex.value],
+    return Obx(() => WillPopScope(
+      onWillPop: () async {
+        bool didPop = navcontroller.goBack();
+        return !didPop; // if false, system can exit app
+      },
+      child: Scaffold(
+        body: navcontroller.currentPage.value,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: navcontroller.selectedindex.value,
           onTap: navcontroller.ChangePage,
           selectedItemColor: Colors.indigo,
-
           backgroundColor: AppColors.Appbar,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.laptop, size: 30),
-              label: "2",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat, size: 30),
-              label: "3",
-            ),
-            BottomNavigationBarItem(
-
-              icon: Icon(Icons.person, size: 30),
-              label: "Profile",
-            ),
+          showSelectedLabels: false, // 🔥 hide label
+          showUnselectedLabels: false, // 🔥 hide label
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.touch_app_outlined), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.chat_outlined), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: ""),
           ],
         ),
       ),
-    );
+    ));
   }
 }

@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             // Profile Picture + Name + Number
             Row(
-              spacing: 10,
+              spacing: 15,
               children: [
                 CircleAvatar(
                   radius: 45,
@@ -23,9 +23,9 @@ class ProfilePage extends StatelessWidget {
                 ),
 
                 Expanded(
-                  child: const Text(
+                  child:  Text(
                     "Hadi Ezzeddine\n70610395",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.headlineLarge
                   ),
                 ),
                 // const Text("70610395", style: TextStyle(fontSize: 16)),
@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
           ),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Text(title, style: const TextStyle(fontSize: 16)),
+            child: Text(title, style: TextStyle(fontSize: 13)),
           ),
         ),
         if (!isLast)

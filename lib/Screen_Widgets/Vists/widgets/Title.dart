@@ -18,7 +18,7 @@ class TilteContainer extends StatelessWidget {
           color: AppColors.Appbar,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Center(child: Text('Add New Visitor',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
+        child: Center(child: Text('Add New Visitor',  style: Theme.of(context).textTheme.headlineLarge,)),
       ),
     );
   }

@@ -25,9 +25,9 @@ class ServicesCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(1), // shadow color
-              spreadRadius: 4, // how wide the shadow spreads
+              spreadRadius: 0, // how wide the shadow spreads
               blurRadius: 10, // how soft the shadow looks
-              offset: Offset(0, 4), // position: x (right), y (down)
+
             ),
           ],
         ),
@@ -38,7 +38,7 @@ class ServicesCard extends StatelessWidget {
             Text(
               category.title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500), // From 8 → 10
+             style: Theme.of(context).textTheme.bodyMedium, // From 8 → 10
             ),
           ],
         ),

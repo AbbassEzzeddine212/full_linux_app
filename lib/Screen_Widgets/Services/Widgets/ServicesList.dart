@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_app/Screen_Widgets/Services/Widgets/ServicesController.dart';
+import 'package:full_app/constant/Dimensions.dart';
 import 'package:get/get.dart';
 
 import '../../../constant/Colors.dart';
@@ -40,10 +41,7 @@ class ServicesLIst extends StatelessWidget {
                       ),
                       child: Text(
                         "Ongoing",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium
                       ),
                     ),
                   ),
@@ -63,10 +61,7 @@ class ServicesLIst extends StatelessWidget {
                       ),
                       child: Text(
                         "Completed",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                          style: Theme.of(context).textTheme.bodyMedium
                       ),
                     ),
                   ),
@@ -86,32 +81,46 @@ class ServicesLIst extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final ServicesClass = Servic[index];
                   return Card(
-                    elevation: 101,
+                    elevation: 7,
                     color: AppColors.Appbar,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
 
-                    margin: EdgeInsets.only(bottom: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    margin: EdgeInsets.only(bottom: 30),
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(
+                        horizontal: DimensionsApp.width*0.03,
+                        vertical: DimensionsApp.height*0.03
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
 
-                          children: [
-                            Icon(Icons.build),
-                            Text(' ${ServicesClass['type']}',style: TextStyle(fontSize: 20)),
-                          ],
-                        ),
-                        Divider(
-                          indent: 20,
-                          endIndent: 20,
-                          color: Colors.black,
-                        ),
+                            children: [
+                              Icon(Icons.build),
+                              Text(' ${ServicesClass['type']}', style: Theme.of(context).textTheme.bodyMedium),
+                            ],
+                          ),
+                          Divider(
+                            indent: 20,
+                            endIndent: 20,
+                            color: Colors.black,
+                          ),
 
-                        Text('Status:   ${ServicesClass['status']}',style: TextStyle(fontSize: 20),),
+                          Text('Status:   ${ServicesClass['status']}', style: Theme.of(context).textTheme.bodyMedium),
 
-                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(Icons.edit_note_rounded),
+                              Icon(Icons.delete_outline),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     // child: ListTile(
                     //   title: Text('${issue['id']} - ${issue['type']}'),

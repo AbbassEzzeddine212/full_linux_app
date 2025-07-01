@@ -35,6 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   get: ^4.7.2
+  image_picker: ^1.1.2
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,8 @@ flutter:
     - assets/images/Ai.jpeg
     - assets/images/healthyfood.jpeg
     - assets/images/gym.jpeg
+    - assets/images/phone.jpeg
+    - assets/images/phone2.jpeg
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

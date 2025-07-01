@@ -29,15 +29,14 @@ class ClicableContainer extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(1), // shadow color
-                  spreadRadius: 4, // how wide the shadow spreads
-                  blurRadius: 10, // how soft the shadow looks
-                  offset: Offset(0, 4), // position: x (right), y (down)
+                  spreadRadius: 2, // how wide the shadow spreads
+                  blurRadius: 11, // how soft the shadow looks
                 ),
               ],
             ),
-            child: Icon(icon, size: 30),
+            child: Icon(icon),
           ),
-          Text(title, maxLines: 2),
+          Text(title, maxLines: 2,style: Theme.of(context).textTheme.bodyMedium,),
         ],
       ),
     );

@@ -25,8 +25,8 @@ class InvoicesCardpage extends StatelessWidget {
               spacing: 20,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Due Date: 20-7-2026',style: TextStyle(fontSize: 15),),
-                Text('Title: payment for monthly services',style: TextStyle(fontSize: 15),),
+                Text('Due Date: 20-7-2026',style: Theme.of(context).textTheme.bodyMedium,),
+                Text('Title: payment for monthly services',style: Theme.of(context).textTheme.bodyMedium,),
                 Text('Details:'),
 
               ],
@@ -40,11 +40,11 @@ class InvoicesCardpage extends StatelessWidget {
               spacing: 20,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Title                                       Amount',style: TextStyle(fontSize: 15),),
-                Text('Rental                                       500 \$',style: TextStyle(fontSize: 15),),
+                Text('Title                                       Amount',style: Theme.of(context).textTheme.bodyMedium,),
+                Text('Rental                                       500 \$',style: Theme.of(context).textTheme.bodyMedium,),
                 Text('Services                                        100 \$'),
 
-                Text('Gym \nsubscription                             100 \$',style: TextStyle(fontSize: 15),),
+                Text('Gym \nsubscription                             100 \$',style: Theme.of(context).textTheme.bodyMedium,),
                 Text('General services                            50 \$'),
 
               ],
@@ -54,7 +54,7 @@ class InvoicesCardpage extends StatelessWidget {
               indent: 60,
               color: Colors.black,
             ),
-            Text('Total                                          750 \$',style: TextStyle(fontSize: 15),),
+            Text('Total                                          750 \$',style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),
       ),
